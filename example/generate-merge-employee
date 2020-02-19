@@ -1,0 +1,11 @@
+set -e #fail script if op fails
+
+../gensqlmerge/gen.py --compare-columns-file sample-column-match.csv \
+    --dest-table "tblEmployee" \
+    --on-condition "src.login_name = dest.login_name" \
+    --insert-columns "EMPLOYEE_KEY:newId() , login_name:login_name" \
+    --source-sql 'select e1.*, l.name as location_name, et.EmployeeTypeCode from Employees e1
+         left outer join EmployeeTypes et on e1.EmployeeTypeId = et.EmployeeTypeId
+         left outer join Locations l on e1.MetroLocationId = l.MetroLocationId' \
+    > generated_merge.sql
+
