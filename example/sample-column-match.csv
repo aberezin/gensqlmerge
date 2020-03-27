@@ -1,3 +1,5 @@
+# Comment lines are allowwed.  Any line with a '#' is ignored. Blank lines are ignored too
+
 FullName : Full_Name
 DateHired : Hire_Date
 EMAIL : EMail
